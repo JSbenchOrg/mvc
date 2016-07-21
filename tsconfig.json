@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "listFiles": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "target": "es5",
+    "outDir": "./dist/tmp/",
+    "rootDir": "./lib/",
+    "sourceMap": true,
+    "diagnostics": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "files": [
+    "lib/index.ts",
+    "typings/handlebars.d.ts"
+  ],
+  "compileOnSave": true
+}
