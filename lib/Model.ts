@@ -31,8 +31,9 @@ export class Model implements Events {
         this.trigger(this.id + 'update', attributes);
     }
 
+    // @todo Export only string keys.
     public toJSON() {
-        return Util.clone(this.attributes);
+        return JSON.parse(JSON.stringify(this.attributes));
     }
 }
 

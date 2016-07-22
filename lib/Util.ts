@@ -21,9 +21,9 @@ export class Util {
             return from;
     }
 
-    public static clone(obj: Object): Object {
-        return (<any>Object).clone(obj);
-    }
+    // public static clone(obj: Object): Object {
+    //    return Object.create(obj);
+    // }
 
     public static each(obj: any, callback: Function) {
         if ((<any[]>obj).length) {
@@ -33,6 +33,10 @@ export class Util {
                 callback(key, obj[key]);
             });
         }
+    }
+
+    public static domGetElem(selector: string): Element {
+        return document.querySelector(selector);
     }
 
     public static domSelector(selector: string): NodeListOf<Element> {

@@ -1,9 +1,10 @@
 import {Model} from './Model';
 import {View} from './View';
 import {Controller} from './Controller';
+import {Util} from './Util';
 
 var homeModel = new Model({
-    title: 'This is the title',
+    title: 'This is the default title',
     updateTitle: function() {
         homeModel.set({title: homeModel.get('title') + ' UPDATED'});
     }
@@ -12,9 +13,13 @@ var homeModel = new Model({
 var homeView = new View({
     el: '#index',
     template: Handlebars.compile('<h1 id="title">{{title}}</h1>'),
+    // @todo: Internalize this method.
+    // On first pass. Modify the whole container via innerHTML.
+    // On consecutive passes only modify the areas updated.
     render: function (data: any) {
-        console.log('View about to render.', data);
-        document.getElementById('title').innerText = data.title;
+        console.log('View about to render with data:', data);
+        // document.getElementById('title').innerText = data.title;
+        Util.domGetElem(this.el).innerHTML = this.template(data);
     },
     observe: function(model: Model) {
         model.on(model.id + 'update', this.render.bind(this));
@@ -30,10 +35,6 @@ var homeController = new Controller({
     },
     updateTitle: function () {
         this.model.attributes.updateTitle();
-        return this;
-    },
-    init: function() {
-        this.view.observe(this.model);
         return this;
     }
 });

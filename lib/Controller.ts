@@ -8,7 +8,7 @@ export class Controller implements Events {
     public model: Model;
     public view: View;
     public events: {[key: string]: string};
-    public init: () => this;
+    // public init: () => this;
     [key: string]: any;
 
     // Begin Events class.
@@ -21,13 +21,12 @@ export class Controller implements Events {
 
     constructor(options:  {[key: string]: any}) {
         this.id = Util.uniqueId('controller');
+
+        // Add custom keys as properties of the class.
         Util.extend(this, options);
-        if (this.events) {
-            this.handleEvents();
-        }
     }
 
-    protected handleEvents() {
+    protected addEvents(): void {
         var parts: string[];
         var selector: string;
         var eventType: string;
@@ -42,6 +41,21 @@ export class Controller implements Events {
                 $node.addEventListener(eventType, this[method].bind(this));
             });
         });
+    }
+
+    public init(): Controller {
+        // Render the view with the default model values.
+        this.view.render(this.model.toJSON());
+
+        // Update the view when model changes.
+        this.view.observe(this.model);
+
+        // Add events to DOM elements.
+        if (this.events) {
+            this.addEvents();
+        }
+
+        return this;
     }
 }
 

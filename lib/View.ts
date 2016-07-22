@@ -6,6 +6,7 @@ export class View implements Events {
     protected id: string;
     public observe: (model: Model) => void;
     public init: () => void;
+    public render: (data: any) => void;
 
     // Begin Events class.
     public channels: {[key: string]: Function} = {};
