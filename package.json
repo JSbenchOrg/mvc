@@ -1,11 +1,28 @@
 {
   "name": "jsbench-mvc",
   "version": "1.0.0",
-  "dependencies": {},
+  "description": "",
+  "repository": "",
+  "license": "MIT",
+  "dependencies": {
+    "file-exists": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "jsonfile": "^2.3.1"
+  },
+  "scripts": {
+    "postinstall": "gulp generate-config",
+    "start": "gulp"
+  },
   "devDependencies": {
+    "browser-sync": "^2.14.0",
     "browserify": "^13.0.0",
     "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-ftp-env": "^0.1.1",
     "gulp-typescript": "^2.12.1",
+    "gulp-watch": "^4.3.9",
+    "handlebars": "^4.0.5",
+    "tsify": "^1.0.3",
     "typescript": "^1.8.7",
     "vinyl-source-stream": "^1.1.0"
   }
